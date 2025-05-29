@@ -14,6 +14,7 @@ let cameraOffsetZ, cameraOffsetY; // Will be set in initThreeJSGame
 
 // DOM elements that are part of the game UI (not landing screen)
 let scoreDisplay;
+let feedbackDisplay; // Added for key press feedback
 let gameCanvasContainer; // Define here, initialize in window.onload
 
 window.onload = function() {
@@ -29,6 +30,7 @@ window.onload = function() {
     
     // Initialize scoreDisplay here as it's part of gameInfo
     scoreDisplay = document.getElementById('scoreValue'); 
+    feedbackDisplay = document.getElementById('feedbackMessage'); // Initialize feedbackDisplay
 
 
     // Load and Display Name on Initial Load
@@ -202,15 +204,27 @@ function onKeyPress(event) {
     const keyPressed = event.key; // No .toUpperCase()
     const expectedChar = currentLetter.userData.char; // This is lowercase from spawnLetter
 
-    const collectionThreshold = 2; 
-    if (Math.abs(rider.position.z - currentLetter.position.z) > collectionThreshold) return; 
-
     if (keyPressed === expectedChar) { // Direct comparison with lowercase
         console.log(`Correct key! You typed: ${keyPressed} for letter ${expectedChar}`);
+        if (feedbackDisplay) {
+            feedbackDisplay.textContent = "Correct!";
+            feedbackDisplay.style.color = "green";
+        }
         scene.remove(currentLetter);
         activeLetters = []; 
         // 3. Confirm Immediate Spawning (onKeyPress) - Confirmed
         spawnLetter(); 
+    } else {
+        if (feedbackDisplay) {
+            feedbackDisplay.textContent = "Wrong Key!";
+            feedbackDisplay.style.color = "red";
+        }
+    }
+
+    if (feedbackDisplay) {
+        setTimeout(() => {
+            feedbackDisplay.textContent = "";
+        }, 1500);
     }
 }
 
