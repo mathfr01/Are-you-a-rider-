@@ -11,7 +11,10 @@ let gameLevel = 1;    // Current game level
 let RIDER_SPEED = 5; // Can be adjusted
 const SPAWN_DISTANCE_AHEAD = 20;
 // 1. Modify middleRowKeys to Lowercase
-const middleRowKeys = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'];
+const middleRowKeys = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';'];
+const topRowKeys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'];
+const bottomRowKeys = ['z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', 'é'];
+
 let cameraOffsetZ, cameraOffsetY; // Will be set in initThreeJSGame
 
 // HUD Sprite Variables
@@ -130,6 +133,13 @@ function initThreeJSGame() {
     groundMesh.rotation.x = -Math.PI / 2; 
     groundMesh.position.y = 0; 
     scene.add(groundMesh);
+
+    const plankWidth = 0.5, plankHeight = 0.4, plankDepth = 1000; 
+    const plankGeometry = new THREE.BoxGeometry(plankWidth, plankHeight, plankDepth);
+    const plankMaterial = new THREE.MeshStandardMaterial({ color: 0x8B4513 }); 
+    const plank = new THREE.Mesh(plankGeometry, plankMaterial);
+    plank.position.set(0, 0, -plankDepth / 2);
+    scene.add(plank);
 
     const grassGeometry = new THREE.PlaneGeometry(grassStripWidth, groundSize);
     const grassMaterial = new THREE.MeshStandardMaterial({ color: 0x228B22 }); 
