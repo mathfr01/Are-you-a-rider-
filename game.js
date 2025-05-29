@@ -112,7 +112,7 @@ function initThreeJSGame() {
         gameCanvasContainer.appendChild(renderer.domElement);
     }
 
-    const plankWidth = 4, plankHeight = 0.2, plankDepth = 1000; 
+    const plankWidth = 0.5, plankHeight = 0.2, plankDepth = 1000; 
     const plankGeometry = new THREE.BoxGeometry(plankWidth, plankHeight, plankDepth);
     const plankMaterial = new THREE.MeshStandardMaterial({ color: 0x8B4513 }); 
     const plank = new THREE.Mesh(plankGeometry, plankMaterial);
