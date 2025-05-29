@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Are you a rider?</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .section { /* This class might become redundant or be repurposed */
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        label {
+            margin-right: 10px;
+        }
+        #gameCanvasContainer {
+            width: 80%; /* Or a fixed size */
+            height: 400px; /* Or a fixed size */
+            border: 1px solid black;
+            margin-top: 20px;
+        }
+        #landingScreen {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            border: 1px solid #ddd; /* Optional: to see its bounds */
+            display: block; /* Initially visible */
+        }
+        /* Styles for user details section if needed */
+        #userDetails { 
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="landingScreen">
+        <h1>Are you a rider?</h1>
+        <div id="userDetails"> <!-- Grouping user details for clarity -->
+            <h2>User Details</h2> <!-- This h2 might be removed if not desired on landing -->
+            <label for="nameInput">Name:</label>
+            <input type="text" id="nameInput">
+            <button id="saveNameButton">Login / Register</button>
+            <div id="displayName" style="margin-top: 10px;"></div> <!-- Added margin for spacing -->
+        </div>
+        <button id="playGameButton" style="display: none;">Play Game</button>
+    </div>
+
+    <div class="section" id="gameInfo" style="display: none;">
+        <h2>Game Information</h2>
+        <div>Score: <span id="scoreValue">3</span></div>
+        <div>Level: <span id="levelValue">1</span></div>
+    </div>
+
+    <button id="pauseButton" style="display: none; margin-top: 10px;">Pause</button>
+
+    <div id="gameCanvasContainer" style="display: none;">
+        <!-- Three.js canvas will be inserted here by game.js -->
+    </div>
+
+    <script src="game.js" defer></script>
+</body>
+</html>
